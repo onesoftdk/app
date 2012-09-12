@@ -3,6 +3,8 @@ source/*/obj
 source/*/bin
 *.chm
 _[Rr]e[Ss]harper.*
+*.[Dd]otSettings*
+*.ncrunch*
 *.csproj.user
 *.[Rr]e[Ss]harper.user
 *.[Rr]e[Ss]harper
