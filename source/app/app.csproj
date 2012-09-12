@@ -90,6 +90,7 @@
     <Compile Include="web\core\IProcessARequest.cs" />
     <Compile Include="web\core\IProcessWebRequests.cs" />
     <Compile Include="web\core\IImplementAFeature.cs" />
+    <Compile Include="web\core\IAmADepartmentServiceRequest.cs" />
     <Compile Include="web\core\RequestCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
