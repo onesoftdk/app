@@ -23,7 +23,7 @@ namespace app.specs
         command_that_can_process = fake.an<IProcessARequest>();
         the_request = fake.an<IEncapsulateRequestDetails>();
 
-        command_registry.setup(x => x.get_the_command_that_can_process_The_request()).Return(command_that_can_process);
+        command_registry.setup(x => x.get_the_command_that_can_process_The_request(the_request)).Return(command_that_can_process);
       };
 
       Because b = () =>
