@@ -2,6 +2,6 @@
 {
   public interface IProcessWebRequests
   {
-    void process(object a_new_request);
+    void process(IEncapsulateRequestDetails a_new_request);
   }
 }

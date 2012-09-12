@@ -23,7 +23,8 @@ namespace app.specs
       {
         the_controller = depends.on<IProcessWebRequests>();
         request_factory = depends.on<ICreateRequests>();
-        a_new_request = new object();
+        a_new_request = fake.an<IEncapsulateRequestDetails>();  
+
         a_context = ObjectFactory.web.create_http_context();
 
         request_factory.setup(x => x.create_request_from(a_context)).Return(a_new_request);
@@ -36,7 +37,7 @@ namespace app.specs
         the_controller.received(x => x.process(a_new_request));
 
       static IProcessWebRequests the_controller;
-      static object a_new_request;
+      static IEncapsulateRequestDetails a_new_request;
       static HttpContext a_context;
       static ICreateRequests request_factory;
     }
