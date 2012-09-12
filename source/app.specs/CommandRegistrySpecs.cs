@@ -25,7 +25,9 @@ namespace app.specs
         all_the_commands.Add(the_Command_that_can_handle_theR_Equest);
         the_Command_that_can_handle_theR_Equest = fake.an<IProcessARequest>();
 
+        request = fake.an<IEncapsulateRequestDetails>();
         the_Command_that_can_handle_theR_Equest.setup(x => x.can_process(request)).Return(true);
+
 
         depends.on<IEnumerable<IProcessARequest>>(all_the_commands);
       };
