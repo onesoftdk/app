@@ -13,7 +13,7 @@ namespace app.specs
   [Subject(typeof(Calculator))]
   public class CalculatorSpecs
   {
-    public abstract class concern : Observes<Calculator>
+    public abstract class concern : Observes<ICalculate,Calculator>
     {
     }
 
@@ -32,7 +32,7 @@ namespace app.specs
         };
 
         Because b = () =>
-          spec.catch_exception(() => sut.shut_off());
+          spec.catch_exception(() => sut.do_something());
 
         It should_throw_a_security_exception = () =>
           spec.exception_thrown.ShouldBeAn<SecurityException>();
