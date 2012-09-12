@@ -5,17 +5,17 @@ namespace app.web
     public class BasicHandler : IHttpHandler
     {
         IProcessWebRequests front_controller;
-        readonly ICreateRequests createRequests;
+        ICreateRequests request_factory;
 
-        public BasicHandler(IProcessWebRequests front_controller, ICreateRequests createRequests)
+        public BasicHandler(IProcessWebRequests front_controller, ICreateRequests request_factory)
         {
             this.front_controller = front_controller;
-            this.createRequests = createRequests;
+            this.request_factory = request_factory;
         }
 
         public void ProcessRequest(HttpContext context)
         {
-            front_controller.process(createRequests.create_request_from(context));
+            front_controller.process(request_factory.create_request_from(context));
         }
 
         public bool IsReusable
