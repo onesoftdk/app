@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Security;
+using System.Threading;
 
 namespace app
 {
@@ -24,7 +26,8 @@ namespace app
 
       public void shut_off()
       {
-        throw new NotImplementedException();
+        if(!Thread.CurrentPrincipal.IsInRole("SHUT_ACCESS")) throw new SecurityException();
+        
       }
     }
 }
