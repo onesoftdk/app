@@ -17,13 +17,13 @@
     <pages autoEventWireup="false">
     </pages>
     <authentication mode="Windows"/>
-    <!--<httpHandlers>
-      <add path=""
-        verb="*"
-        type=""/>
-        </httpHandlers>-->
    </system.web>
   <system.webServer>
+    <handlers>
+      <add name="blah" path="*.uk"
+        verb="*"
+        type="app.web.core.BasicHandler,app"/>
+        </handlers>
   </system.webServer>
 
   <!--<system.codedom>
