@@ -32,7 +32,7 @@ namespace app.specs
         };
 
         Because b = () =>
-          spec.catch_exception(() => sut.do_something());
+          spec.catch_exception(() => sut.shut_off());
 
         It should_throw_a_security_exception = () =>
           spec.exception_thrown.ShouldBeAn<SecurityException>();
