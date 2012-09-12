@@ -17,6 +17,7 @@ namespace app.specs
     }
 
    
+
     public class when_getting_a_command_for_a_request_and_ITh_AS_The_command : concern
     {
       Establish c = () =>
@@ -24,9 +25,8 @@ namespace app.specs
         the_Command_that_can_handle_theR_Equest = fake.an<IProcessARequest>();
         all_the_commands = Enumerable.Range(1,100).Select(x => fake.an<IProcessARequest>()).ToList();
         all_the_commands.Add(the_Command_that_can_handle_theR_Equest);
-        the_Command_that_can_handle_theR_Equest = fake.an<IProcessARequest>();
-
         request = fake.an<IEncapsulateRequestDetails>();
+
         the_Command_that_can_handle_theR_Equest.setup(x => x.can_process(request)).Return(true);
 
 
@@ -44,6 +44,31 @@ namespace app.specs
       static IProcessARequest the_Command_that_can_handle_theR_Equest;
       static IEncapsulateRequestDetails request;
       static IList<IProcessARequest> all_the_commands;
+    }
+
+    public class when_getting_a_command_for_a_request_and_ITh_does_not_have_The_command : concern
+    {
+      Establish c = () =>
+      {
+        all_the_commands = Enumerable.Range(1,100).Select(x => fake.an<IProcessARequest>()).ToList();
+        the_special_case = depends.on<IProcessARequest>();
+        request = fake.an<IEncapsulateRequestDetails>();
+
+
+        depends.on<IEnumerable<IProcessARequest>>(all_the_commands);
+      };
+
+      Because b = () =>
+        result = sut.get_the_command_that_can_process_The_request(request);
+
+      It should_return_the_special_case  = () =>
+        result.ShouldEqual(the_special_case);
+
+
+      static IProcessARequest result;
+      static IEncapsulateRequestDetails request;
+      static IList<IProcessARequest> all_the_commands;
+      static IProcessARequest the_special_case;
     }
   }
 }
