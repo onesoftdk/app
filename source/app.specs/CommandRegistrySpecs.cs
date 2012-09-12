@@ -21,6 +21,7 @@ namespace app.specs
     {
       Establish c = () =>
       {
+        the_Command_that_can_handle_theR_Equest = fake.an<IProcessARequest>();
         all_the_commands = Enumerable.Range(1,100).Select(x => fake.an<IProcessARequest>()).ToList();
         all_the_commands.Add(the_Command_that_can_handle_theR_Equest);
         the_Command_that_can_handle_theR_Equest = fake.an<IProcessARequest>();
