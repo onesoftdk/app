@@ -5,20 +5,20 @@ namespace app
 {
   public class Calculator
   {
-      readonly IDbConnection connection;
+    readonly IDbConnection connection;
 
-      public Calculator(IDbConnection connection)
-      {
-          this.connection = connection;
-      }
-
-      public int add(int first, int second)
+    public Calculator(IDbConnection connection)
     {
-        if (first < 0 || second < 0) throw new ArgumentException();
+      this.connection = connection;
+    }
 
-          connection.Open();
+    public int add(int first, int second)
+    {
+      if (first < 0 || second < 0) throw new ArgumentException();
 
-        return first + second;
+      connection.Open();
+
+      return first + second;
     }
   }
 }
