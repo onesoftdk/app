@@ -2,6 +2,6 @@
 {
   public interface IEncapsulateRequestDetails
   {
-     
+      string command_type { get;  }
   }
 }
