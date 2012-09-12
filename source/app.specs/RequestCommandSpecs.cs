@@ -1,33 +1,58 @@
-﻿using Machine.Specifications;
+﻿using System;
+using Machine.Specifications;
 using app.web;
+using app.web.core;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
-    [Subject(typeof(RequestCommand))]
-    public class RequestCommandSpecs
+  [Subject(typeof(RequestCommand))]
+  public class RequestCommandSpecs
+  {
+    public abstract class concern : Observes<IProcessARequest,
+                                      RequestCommand>
     {
-        public abstract class concern : Observes<IProcessARequest,
-                                          RequestCommand>
-        {
-        }
-
-        public class when_determining_if_it_can_process_a_request : concern
-        {
-            Establish c = () =>
-                              {
-                                  sut.command_type = "COMMAND_TYPE";
-                                  the_request = fake.an<IEncapsulateRequestDetails>();
-                                  //the_request.setup(x => x.command_type).Return("COMMAND_TYPE");
-                              };
-
-            Because b = () =>
-              sut.can_process(the_request);
-
-            It should_have_correct_command_type = () => { sut.command_type.ShouldEqual(the_request.command_type); };
-
-         static IEncapsulateRequestDetails the_request;
-        }
     }
+
+    public class when_determining_if_it_can_process_a_request : concern
+    {
+      Establish c = () =>
+      {
+        the_request = fake.an<IEncapsulateRequestDetails>();
+        depends.on<Predicate<IEncapsulateRequestDetails>>(x =>
+        {
+          x.ShouldEqual(the_request);
+          return true;
+        });
+      };
+
+      Because b = () =>
+        result = sut.can_process(the_request);
+
+      It should_make_its_determination_by_using_its_request_specification = () =>
+        result.ShouldBeTrue();
+
+      static IEncapsulateRequestDetails the_request;
+      static bool result;
+    }
+
+    public class when_processing_a_request : concern
+    {
+      Establish c = () =>
+      {
+        app_behaviour = depends.on<IImplementAFeature>();
+        request = fake.an<IEncapsulateRequestDetails>();
+      };
+
+      Because b = () =>
+        sut.process(request);
+
+      It should_run_the_feature = () =>
+        app_behaviour.received(x => x.process(request));
+
+      static IImplementAFeature app_behaviour;
+      static IEncapsulateRequestDetails request;
+    }
+  }
 }

@@ -2,6 +2,7 @@
  using Machine.Specifications;
  using app.specs.utility;
  using app.web;
+ using app.web.core;
  using developwithpassion.specifications.rhinomocks;
  using developwithpassion.specifications.extensions;
 

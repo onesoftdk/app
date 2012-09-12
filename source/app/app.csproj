@@ -80,15 +80,17 @@
     <Compile Include="Calculator.cs" />
     <Compile Include="ICalculate.cs" />
     <Compile Include="MessageGenerator.cs" />
-    <Compile Include="web\BasicHandler.cs" />
-    <Compile Include="web\CommandRegistry.cs" />
-    <Compile Include="web\FrontController.cs" />
-    <Compile Include="web\ICreateRequests.cs" />
-    <Compile Include="web\IEncapsulateRequestDetails.cs" />
-    <Compile Include="web\IFindCommandsForRequests.cs" />
-    <Compile Include="web\IProcessARequest.cs" />
-    <Compile Include="web\IProcessWebRequests.cs" />
-    <Compile Include="web\RequestCommand.cs" />
+    <Compile Include="web\app\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
+    <Compile Include="web\core\BasicHandler.cs" />
+    <Compile Include="web\core\CommandRegistry.cs" />
+    <Compile Include="web\core\FrontController.cs" />
+    <Compile Include="web\core\ICreateRequests.cs" />
+    <Compile Include="web\core\IEncapsulateRequestDetails.cs" />
+    <Compile Include="web\core\IFindCommandsForRequests.cs" />
+    <Compile Include="web\core\IProcessARequest.cs" />
+    <Compile Include="web\core\IProcessWebRequests.cs" />
+    <Compile Include="web\core\IImplementAFeature.cs" />
+    <Compile Include="web\core\RequestCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
