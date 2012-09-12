@@ -5,7 +5,7 @@ namespace app
 {
     public class Calculator
     {
-        readonly IDbConnection connection;
+        IDbConnection connection;
 
         public Calculator(IDbConnection connection)
         {
@@ -21,5 +21,10 @@ namespace app
             cmd.ExecuteNonQuery();
             return first + second;
         }
+
+      public void shut_off()
+      {
+        throw new NotImplementedException();
+      }
     }
 }
