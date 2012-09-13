@@ -7,7 +7,7 @@ using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
-    [Subject(typeof(ViewTheMainDepartmentsInTheStore))]
+    [Subject(typeof(ViewTheSubDepartmentsInADepartment))]
     public class ViewTheDepartmentsInADepartmentSpecs
     {
         public abstract class concern : Observes<IImplementAFeature, ViewTheMainDepartmentsInTheStore>
@@ -23,7 +23,7 @@ namespace app.specs
                 request = fake.an<IEncapsulateRequestDetails>();
                 the_sub_departments = new List<DepartmentItem> { new DepartmentItem() };
                 the_curent_department = new DepartmentItem();
-                department_repository.setup(x => x.get_sub_departments()).Return(the_sub_departments);
+                department_repository.setup(x => x.get_sub_departments(the_curent_department)).Return(the_sub_departments);
             };
 
             Because b = () =>
@@ -39,5 +39,9 @@ namespace app.specs
             static IEnumerable<DepartmentItem> the_sub_departments;
             private static DepartmentItem the_curent_department;
         }
+    }
+
+    public class ViewTheSubDepartmentsInADepartment
+    {
     }
 }
